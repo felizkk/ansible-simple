@@ -1,0 +1,18 @@
+---
+- name: Rescue Test
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: debug hostname
+      ansible.builtin.debug:
+        var: inventory_hostname
+
+    - name: fail 
+      ansible.builtin.fail:
+        msg: "simulated fail"
+      when: inventory_hostname != 'fkarnadi-rhel-dns.kvm.local'
+
+    - name: debug hostname
+      ansible.builtin.debug:
+        var: inventory_hostname
