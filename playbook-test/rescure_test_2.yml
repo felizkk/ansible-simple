@@ -3,6 +3,10 @@
   hosts: all
   gather_facts: false
 
+  vars:
+    patch_unprepared_hosts:
+      - fkarnadi-rhel-dev.kvm.local
+
   tasks:
     - name: debug hostname
       ansible.builtin.debug:
@@ -11,7 +15,7 @@
     - name: fail 
       ansible.builtin.fail:
         msg: "simulated fail"
-      when: inventory_hostname != 'fkarnadi-rhel-dns.kvm.local'
+      when: inventory_hostname in patch_unprepared_hosts
 
     - name: debug hostname
       ansible.builtin.debug:
