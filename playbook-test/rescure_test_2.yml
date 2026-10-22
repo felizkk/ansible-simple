@@ -6,11 +6,16 @@
   vars:
     patch_unprepared_hosts:
       - fkarnadi-rhel-dev.kvm.local
-
+      - fkarnadi-rhel-foobar.kvm.local
+      
   tasks:
     - name: debug hostname
       ansible.builtin.debug:
         var: inventory_hostname
+
+    - name: debug patch_unprepared_hosts
+      ansible.builtin.debug:
+        var: patch_unprepared_hosts
 
     - name: fail 
       ansible.builtin.fail:
